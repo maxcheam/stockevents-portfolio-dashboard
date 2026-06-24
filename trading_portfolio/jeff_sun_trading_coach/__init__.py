@@ -1,0 +1,106 @@
+"""Jeff Sun Trading Coach — skill and validation package."""
+
+from .coach import (
+    analyze_trade_description,
+    extract_skill_section,
+    load_coaching_protocol_steps,
+    load_skill_prompt,
+)
+from .entry_framework import (
+    EntrySignals,
+    detect_hard_rule_violations,
+    parse_description_to_signals,
+    score_entry,
+)
+from .horizon import (
+    TradeHorizon,
+    detect_trade_horizon,
+    horizon_label,
+    is_t3_compliant,
+    parse_horizon_arg,
+)
+from .fills import build_closed_positions, load_trades_csv
+from .market_context import (
+    LaunchOrmaCheckResult,
+    LodCheckResult,
+    analyze_launch_orma_for_symbol,
+    analyze_lod_for_symbol,
+    analyze_rs_line_for_symbol,
+    analyze_vars_for_symbol,
+    build_auto_signals_for_symbol,
+    compute_launch_orma_check,
+    compute_lod_check_from_ohlcv,
+    compute_signals_from_ohlcv,
+    enrich_market_signals_launch_orma,
+    current_price_from_ohlcv,
+    entry_signals_has_auto_data,
+    fetch_current_price_for_symbol,
+    format_launch_orma_live_analysis,
+    format_lod_live_analysis,
+    format_rs_line_live_analysis,
+    format_vars_live_analysis,
+    merge_entry_signals,
+    resolve_price_for_check,
+)
+from .process import analyze_trades
+from .recommendation import (
+    PositionContext,
+    assess_relative_strength,
+    build_verdict_synthesis,
+    compute_trade_recommendation,
+    parse_position_context,
+    resolve_unrealized_pnl,
+)
+from .report import format_report, generate_report
+from .rules import JeffSunRules, load_rules
+from .stop_proxy import simulate_three_stop
+
+__all__ = [
+    "JeffSunRules",
+    "load_rules",
+    "EntrySignals",
+    "score_entry",
+    "detect_hard_rule_violations",
+    "parse_description_to_signals",
+    "TradeHorizon",
+    "detect_trade_horizon",
+    "horizon_label",
+    "is_t3_compliant",
+    "parse_horizon_arg",
+    "analyze_trade_description",
+    "extract_skill_section",
+    "load_coaching_protocol_steps",
+    "load_skill_prompt",
+    "analyze_trades",
+    "build_closed_positions",
+    "format_report",
+    "generate_report",
+    "load_trades_csv",
+    "simulate_three_stop",
+    "build_auto_signals_for_symbol",
+    "compute_signals_from_ohlcv",
+    "merge_entry_signals",
+    "entry_signals_has_auto_data",
+    "analyze_vars_for_symbol",
+    "format_vars_live_analysis",
+    "analyze_rs_line_for_symbol",
+    "format_rs_line_live_analysis",
+    "LaunchOrmaCheckResult",
+    "LodCheckResult",
+    "analyze_launch_orma_for_symbol",
+    "analyze_lod_for_symbol",
+    "compute_launch_orma_check",
+    "compute_lod_check_from_ohlcv",
+    "enrich_market_signals_launch_orma",
+    "current_price_from_ohlcv",
+    "fetch_current_price_for_symbol",
+    "format_launch_orma_live_analysis",
+    "format_lod_live_analysis",
+    "resolve_price_for_check",
+    "compute_trade_recommendation",
+    "PositionContext",
+    "parse_position_context",
+    "resolve_unrealized_pnl",
+    "assess_relative_strength",
+    "build_verdict_synthesis",
+]
