@@ -10,6 +10,7 @@ dependencies = [
     "numpy",
     "yfinance",
     "plotly",
+    "matplotlib",
 ]
 
 [tool.uv]
