@@ -388,19 +388,22 @@ display_df = display_df.sort_values(
     ascending=False,
 )
 
-st.dataframe(
-    display_df.style.format(
-        {
-            "Avg Cost (approx)": "${:,.2f}",
-            "Total Invested (approx)": "${:,.0f}",
-            "Live Price": "${:,.2f}",
-            "Live Market Value": "${:,.0f}",
-            "Unrealized P&L (approx)": "${:,.0f}",
-        }
-    ).background_gradient(subset=["Unrealized P&L (approx)"], cmap="RdYlGn"),
-    use_container_width=True,
-    hide_index=True,
-)
+_money_formats = {
+    "Avg Cost (approx)": "${:,.2f}",
+    "Total Invested (approx)": "${:,.0f}",
+    "Live Price": "${:,.2f}",
+    "Live Market Value": "${:,.0f}",
+    "Unrealized P&L (approx)": "${:,.0f}",
+}
+_present_formats = {
+    col: fmt for col, fmt in _money_formats.items() if col in display_df.columns
+}
+_styled = display_df.style.format(_present_formats, na_rep="—")
+if "Unrealized P&L (approx)" in display_df.columns:
+    _styled = _styled.background_gradient(
+        subset=["Unrealized P&L (approx)"], cmap="RdYlGn"
+    )
+st.dataframe(_styled, use_container_width=True, hide_index=True)
 
 # Theme Allocation Pie (using previous grouping)
 st.subheader("📈 Allocation by Theme")
